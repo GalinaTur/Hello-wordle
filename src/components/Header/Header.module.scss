@@ -1,0 +1,43 @@
+@import '@fontsource/lobster-two/700.css';
+@import '../../common-styles/mixins';
+
+.header {
+    font-family: 'Lobster Two', sans-serif;
+    padding: 0 5px;
+    margin-bottom: 30px;
+    border-bottom: 2px dotted rgb(97, 97, 97);
+    font-size: 15px;
+    font-weight: bold;
+
+    .container {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    a {
+        cursor: pointer;
+        text-decoration: none;
+
+        .info {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+@include media-md {
+    .header {
+        font-size: 20px;
+        padding: 0 50px;
+
+        a { 
+            .info {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+}

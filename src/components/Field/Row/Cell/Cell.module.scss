@@ -1,0 +1,29 @@
+@import "../../../../common-styles/variables";
+@import "../../../../common-styles/mixins";
+
+.cell {
+    width: $square-size-sm;
+    height: $square-size-sm;
+    background-color: rgb(251, 255, 215);
+    border: 2px solid rgb(97, 97, 97);
+    text-align: center;
+
+    &-green {
+        background-color: rgb(146, 255, 143);
+    }
+
+    &-yellow {
+        background-color: rgb(253, 255, 143);
+    }
+
+    &-gray {
+        background-color: rgb(218, 218, 218);
+    }
+}
+
+@include media-md {
+    .cell {
+    width: $square-size-md;
+    height: $square-size-md;
+    }
+}

@@ -1,0 +1,52 @@
+@import "../../../common-styles/variables";
+@import "../../../common-styles/mixins";
+
+.button {
+    min-width: 8vw;
+    min-height: $square-size-xs*1.5;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 8px;
+    text-align: center;
+    padding: 0 5px;
+
+    &[data-color="green"] {
+        background-color: rgb(146, 255, 143);
+    }
+
+    &[data-color="yellow"] {
+        background-color: rgb(253, 255, 143);
+    }
+
+    &[data-color="gray"] {
+        background-color: rgb(165, 165, 165);
+    }
+}
+
+.backspace {
+    background-image: url(../../../assets/img/backspace.svg);
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.backspace,
+.enter {
+    min-width: 50px;
+}
+
+@include media-md {
+    .button {
+        min-width: 40px;
+        padding: 0 8px;
+    }
+
+    .backspace {
+        background-size: 25px;
+    }
+
+    .backspace,
+    .enter {
+        min-width: 70px;
+    }
+}

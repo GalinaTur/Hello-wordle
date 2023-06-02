@@ -1,0 +1,25 @@
+@import '../../common-styles/mixins';
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    font-size: 5vw;
+
+    .row {
+        display: flex;
+        gap: 2px;
+    }
+}
+
+@include media-md {
+    .keyboard {
+        font-size: 25px;
+        gap: 4px;
+
+        .row {
+            gap: 4px;
+        }
+    }
+}
