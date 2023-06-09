@@ -10,7 +10,6 @@ export const App = () => {
     const [dailyWord, setDailyWord] = useState('');
 
     useEffect(()=>setDailyWord(words[randomIndex]), []);
-    console.log(dailyWord);
 
     return (
         <>
