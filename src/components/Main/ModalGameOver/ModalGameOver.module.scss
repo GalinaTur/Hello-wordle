@@ -1,0 +1,41 @@
+.modalCover {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal {
+    position: absolute;
+    width: 400px;
+    background-color: #fff;
+    top: -20px;
+    left: calc(50% - 200px);
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 24px;
+    background-color: rgb(223, 239, 250);
+    border: 2px solid rgb(97, 97, 97);
+    border-radius: 8px;
+    z-index: 5;
+
+    .modalTextWin {
+        font-size: 40px;
+        letter-spacing: 3px;
+
+        &::before {
+            content: "😎";
+        }
+    }
+
+    .modalTextLose {
+        font-size: 40px;
+
+        &::before {
+            content: "🤨";
+        }
+    }
+    .dailyWord {
+        font-size: 50px;
+        letter-spacing: 5px;
+    }
+}

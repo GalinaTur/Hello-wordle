@@ -51,8 +51,6 @@ export const Keyboard = ({ setWords, activeRow, setActiveRow, setMessage, guesse
         });
     }
 
-
-
     const handleEnterClick = () => {
         setWords((prev) => {
             const currentWord = prev[activeRow];
