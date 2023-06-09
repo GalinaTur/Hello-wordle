@@ -1,3 +1,5 @@
+@import "../../../common-styles/mixins";
+
 .modalCover {
     position: absolute;
     width: 100vw;
@@ -6,20 +8,19 @@
 
 .modal {
     position: absolute;
-    width: 400px;
-    background-color: #fff;
+    width: 200px;
     top: -20px;
-    left: calc(50% - 200px);
+    left: calc(50% - 100px);
     padding: 10px 5px;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     background-color: rgb(223, 239, 250);
     border: 2px solid rgb(97, 97, 97);
     border-radius: 8px;
     z-index: 5;
 
     .modalTextWin {
-        font-size: 40px;
+        font-size: 30px;
         letter-spacing: 3px;
 
         &::before {
@@ -28,14 +29,35 @@
     }
 
     .modalTextLose {
-        font-size: 40px;
+        font-size: 30px;
 
         &::before {
             content: "🤨";
         }
     }
     .dailyWord {
-        font-size: 50px;
+        font-size: 40px;
         letter-spacing: 5px;
+    }
+}
+
+@include media-md {
+    .modal {
+        width: 400px;
+        left: calc(50% - 200px);
+        font-size: 24px;
+    
+        .modalTextWin {
+            font-size: 40px;
+            letter-spacing: 3px;
+        }
+    
+        .modalTextLose {
+            font-size: 40px;
+        }
+        .dailyWord {
+            font-size: 50px;
+            letter-spacing: 5px;
+        }
     }
 }
