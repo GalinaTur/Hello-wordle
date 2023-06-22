@@ -1,20 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from "./components/Header/Header";
 import { Main } from "./components/Main/Main";
 import words from './store';
 
-const randomIndex = (Math.round(Math.random()*2313));
+let randomIndex = (Math.round(Math.random() * 2313));
 
 export const App = () => {
-
     const [dailyWord, setDailyWord] = useState('');
 
-    useEffect(()=>setDailyWord(words[randomIndex]), []);
+    const startNewGame = () => {
+        randomIndex = (Math.round(Math.random() * 2313));
+        setDailyWord(words[randomIndex]);
+    }
 
+    useEffect(() => setDailyWord(words[randomIndex]), []);
     return (
         <>
             <Header />
-            <Main dailyWord={dailyWord}/>
+            <Main dailyWord={dailyWord} startNewGame={startNewGame} />
         </>
     )
 }

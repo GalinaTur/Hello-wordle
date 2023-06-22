@@ -1,0 +1,84 @@
+@import "../../../common-styles/mixins";
+
+.modalCover {
+    position: relative;
+    font-family: 'Patrick Hand SC', sans-serif;
+    font-weight: normal;
+    min-width: 300px;
+    padding: 10px 0;
+    font-size: 20px;
+    background-color: rgb(255, 236, 173);
+    border: 2px solid rgb(97, 97, 97);
+    border-radius: 20px;
+
+    &::backdrop{
+        background: rgba(0, 0, 0, 0);
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(1px);
+        padding: 5px;
+    }
+
+    .title {
+        text-align: center;
+        padding-bottom: 10px;
+        border-bottom: 2px dotted rgb(97, 97, 97);
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .subtitle {
+        margin-top: 10px;
+    }
+
+    ul {
+        margin: 15px 0;
+    }
+
+    .example {
+        margin-bottom: 15px;
+
+        .bold {
+            font-weight: bold;
+        }
+    }
+
+    .cells {
+        font-weight: bold;
+        font-size: 26px;
+        div {
+            width: 35px;
+            height: 35px;
+        }
+
+        &_1 div:nth-child(1) {
+            background-color: rgb(146, 255, 143);
+        }
+
+        &_2 div:nth-child(3) {
+            background-color: rgb(253, 255, 143);
+        }
+
+        &_3 div:nth-child(4) {
+            background-color: rgb(218, 218, 218);
+        }
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .closeBtn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+@include media-md {
+    .modalCover {
+        width: 400px;
+        font-size: 26px;
+    }
+}

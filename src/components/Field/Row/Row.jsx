@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
 import styles from "./Row.module.scss";
 import classNames from "classnames";
 import { Cell } from "./Cell/Cell";
-
-
 
 const setCellColor = (word, dailyWord, index) => {
     if (word[index] === dailyWord[index]) {
@@ -20,7 +17,7 @@ const isFilledRow = (currentRow, activeRow) => {
 }
 
 const changePseudoDailyWord = (dailyWord, letter, color) => {
-    if (color === "yellow" && [...dailyWord].filter((item)=>item === letter).length > 1) {
+    if (color === "yellow" && [...dailyWord].filter((item) => item === letter).length > 1) {
         return dailyWord;
     }
     return dailyWord.replace(letter, ' ');
@@ -40,7 +37,6 @@ export const Row = ({ className, word, dailyWord, activeRow, nth }) => {
         row.push(<Cell color={isFilledRow(nth, activeRow) ? color : ''}
             value={word[i] ? word[i] : ''} key={i} />);
     };
-
 
     return (
         <div className={classNames(className, styles.row)}>
