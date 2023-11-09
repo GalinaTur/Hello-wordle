@@ -52,15 +52,15 @@
             height: 35px;
         }
 
-        &_1 div:nth-child(1) {
+        &_1 div:nth-child(1) div div {
             background-color: rgb(146, 255, 143);
         }
 
-        &_2 div:nth-child(3) {
+        &_2 div:nth-child(3) div div {
             background-color: rgb(253, 255, 143);
         }
 
-        &_3 div:nth-child(4) {
+        &_3 div:nth-child(4) div div {
             background-color: rgb(218, 218, 218);
         }
     }

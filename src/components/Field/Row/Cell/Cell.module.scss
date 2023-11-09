@@ -6,6 +6,7 @@
     width: $square-size-sm;
     height: $square-size-sm;
     perspective: 1000px;
+    text-transform: capitalize;
 
 .cell {
     position: relative;
@@ -14,7 +15,7 @@
     text-align: center;
     user-select: none;
     transform-style: preserve-3d;
-    transition: transform 1s ease;
+    transition: transform 0.8s ease;
     border: 2px solid rgb(97, 97, 97);
 
     &_0 {
@@ -69,7 +70,7 @@
 }
 
 @include media-md {
-    .cell {
+    .container {
         width: $square-size-md;
         height: $square-size-md;
     }

@@ -3,13 +3,13 @@ import { Header } from "./components/Header/Header";
 import { Main } from "./components/Main/Main";
 import words from './store';
 
-let randomIndex = (Math.round(Math.random() * 2313));
+let randomIndex = (Math.round(Math.random() * 5757));
 
 export const App = () => {
     const [dailyWord, setDailyWord] = useState('');
 
     const startNewGame = () => {
-        randomIndex = (Math.round(Math.random() * 2313));
+        randomIndex = (Math.round(Math.random() * 5757));
         setDailyWord(words[randomIndex]);
     }
 

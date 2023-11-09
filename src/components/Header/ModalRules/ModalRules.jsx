@@ -39,3 +39,4 @@ export const ModalRules = ({ id, handleClick }) => {
         </dialog>
     )
 }
+

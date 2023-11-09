@@ -13,12 +13,12 @@ export const KeyboardBtn = ({ className, btnKey, onClick }) => {
     } else if (btnKey === 'enter') {
         return (
             <button className={classNames(className, styles.button)} 
-            data-key='enter' onClick={onClick}>{btnKey.toUpperCase()}</button>
+            data-key='enter' onClick={onClick}>{btnKey}</button>
         )
     } else {
         return (
             <button className={classNames(className, styles.button)} 
-            data-key={btnKey} data-color='' onClick={onClick}>{btnKey.toUpperCase()}</button>
+            data-key={btnKey} data-color='' onClick={onClick}>{btnKey}</button>
         )
     }
 }

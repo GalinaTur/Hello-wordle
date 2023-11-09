@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ModalGameOver.module.scss";
+import classNames from 'classnames';
 
 let message = '';
 
@@ -22,7 +23,7 @@ export const ModalGameOver = ({ gameStatus, dailyWord, handleStartNewGameClick }
     setGameOverModal(gameStatus, dailyWord);
 
     return (
-        <div id="modal" className={styles.modalCover} hidden={gameStatus === 'in progress'}>
+        <div id="modal" className={classNames(styles.modalCover, (gameStatus !== 'in progress'? styles.modalCover__active : ''))}>
             <div className={styles.modal}>
                 {message}
                 <button className={styles.newGamebtn} onClick={handleStartNewGameClick}>Start New Game!</button>

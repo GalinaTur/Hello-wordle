@@ -5,10 +5,15 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    top: -105px;
+    top: -120vh;
     left: 0;
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(1px);
+    transition: top 0s 2s;
+
+    &__active {
+        top: -105px;
+    }
 }
 
 .modal {
