@@ -1,30 +1,76 @@
 @import "../../../../common-styles/variables";
 @import "../../../../common-styles/mixins";
 
-.cell {
+.container {
+    background-color: transparent;
     width: $square-size-sm;
     height: $square-size-sm;
-    background-color: rgb(251, 255, 215);
-    border: 2px solid rgb(97, 97, 97);
+    perspective: 1000px;
+
+.cell {
+    position: relative;
+    width: 100%;
+    height: 100%;
     text-align: center;
     user-select: none;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    border: 2px solid rgb(97, 97, 97);
 
-    &-green {
-        background-color: rgb(146, 255, 143);
+    &_0 {
+        transition-delay: 0;
+    }
+    &_1 {
+        transition-delay: 0.25s;
+    }
+    &_2 {
+        transition-delay: 0.5s;
+    }
+    &_3 {
+        transition-delay: 0.75s;
+    }
+    &_4 {
+        transition-delay: 1s;
     }
 
-    &-yellow {
-        background-color: rgb(253, 255, 143);
+    &__active {
+        transform: rotateX(180deg);
     }
 
-    &-gray {
-        background-color: rgb(218, 218, 218);
+    &__front,
+    &__back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
+
+    &__front {
+        background-color: rgb(251, 255, 215);
+    }
+
+    &__back {
+        transform: rotateX(180deg);
+
+        &_green {
+            background-color: rgb(146, 255, 143);
+        }
+
+        &_yellow {
+            background-color: rgb(253, 255, 143);
+        }
+
+        &_gray {
+            background-color: rgb(218, 218, 218);
+        }
+    }
+}
 }
 
 @include media-md {
     .cell {
-    width: $square-size-md;
-    height: $square-size-md;
+        width: $square-size-md;
+        height: $square-size-md;
     }
 }

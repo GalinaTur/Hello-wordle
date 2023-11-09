@@ -34,7 +34,7 @@ export const Row = ({ className, word, dailyWord, activeRow, nth }) => {
         if (color === "green" || color === "yellow") {
             pseudoDailyWord = changePseudoDailyWord(pseudoDailyWord, word[i], color);
         }
-        row.push(<Cell color={isFilledRow(nth, activeRow) ? color : ''}
+        row.push(<Cell nth={i} color={isFilledRow(nth, activeRow) ? color : ''}
             value={word[i] ? word[i] : ''} key={i} />);
     };
 
