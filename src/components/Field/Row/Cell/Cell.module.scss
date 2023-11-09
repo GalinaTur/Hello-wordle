@@ -15,27 +15,26 @@
     text-align: center;
     user-select: none;
     transform-style: preserve-3d;
-    transition: transform 0.8s ease;
     border: 2px solid rgb(97, 97, 97);
-
-    &_0 {
-        transition-delay: 0;
-    }
-    &_1 {
-        transition-delay: 0.25s;
-    }
-    &_2 {
-        transition-delay: 0.5s;
-    }
-    &_3 {
-        transition-delay: 0.75s;
-    }
-    &_4 {
-        transition-delay: 1s;
-    }
 
     &__active {
         transform: rotateX(180deg);
+        transition: transform 0.8s ease;
+        &.cell_0 {
+            transition-delay: 0;
+        }
+        &.cell_1 {
+            transition-delay: 0.25s;
+        }
+        &.cell_2 {
+            transition-delay: 0.5s;
+        }
+        &.cell_3 {
+            transition-delay: 0.75s;
+        }
+        &.cell_4 {
+            transition-delay: 1s;
+        }
     }
 
     &__front,
