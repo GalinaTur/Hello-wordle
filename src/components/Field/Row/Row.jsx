@@ -5,19 +5,32 @@ import { Cell } from "./Cell/Cell";
 const setCellColor = (word, dailyWord, index) => {
     if (word[index] === dailyWord[index]) {
         return "green";
-    } else if (dailyWord.includes(word[index]) && word[index] !== dailyWord[index]) {
+    } else if (dailyWord.includes(word[index])) {
         return "yellow";
     } else {
         return "gray";
     }
 }
 
+const checkForFullMatching = (word, dailyWord) => {
+    let matchIndexes = [];
+    let pseudoDailyWord = dailyWord;
+    for (let i = 0; i < 5; i++) {
+        if (word[i] === pseudoDailyWord[i]) { 
+            matchIndexes.push(i);
+            pseudoDailyWord = pseudoDailyWord.replace(word[i], ' ');
+            console.log(pseudoDailyWord, matchIndexes)
+        }
+    }
+    return [matchIndexes, pseudoDailyWord];
+}
+
 const isFilledRow = (currentRow, activeRow) => {
     return currentRow < activeRow;
 }
 
-const changePseudoDailyWord = (dailyWord, letter, color) => {
-    if (color === "yellow" && [...dailyWord].filter((item) => item === letter).length > 1) {
+const changePseudoDailyWord = (dailyWord, letter) => {
+    if ([...dailyWord].filter(item => item === letter).length > 1) {
         return dailyWord;
     }
     return dailyWord.replace(letter, ' ');
@@ -27,12 +40,19 @@ export const Row = ({ className, word, dailyWord, activeRow, nth }) => {
 
     const row = [];
     let color = '';
-    let pseudoDailyWord = dailyWord;
+    let pseudoDailyWord  = dailyWord;
+    let matchIndexes = [];
+
+    if (isFilledRow(nth, activeRow)) [matchIndexes, pseudoDailyWord] = checkForFullMatching(word, pseudoDailyWord);
+
+console.log(matchIndexes, pseudoDailyWord)
 
     for (let i = 0; i < 5; i++) {
-        if (isFilledRow(nth, activeRow)) color = setCellColor(word, pseudoDailyWord, i);
-        if (color === "green" || color === "yellow") {
-            pseudoDailyWord = changePseudoDailyWord(pseudoDailyWord, word[i], color);
+        if (isFilledRow(nth, activeRow) && matchIndexes.includes(i)) {
+            color = 'green';
+        } else if (isFilledRow(nth, activeRow)) color = setCellColor(word, pseudoDailyWord, i);
+        if (color === "yellow") {
+            pseudoDailyWord = changePseudoDailyWord(pseudoDailyWord, word[i]);
         }
         row.push(<Cell nth={i} color={isFilledRow(nth, activeRow) ? color : ''}
             value={word[i] ? word[i] : ''} key={i} />);

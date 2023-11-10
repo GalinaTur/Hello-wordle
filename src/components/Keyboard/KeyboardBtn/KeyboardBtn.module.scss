@@ -14,18 +14,17 @@
 
     &[data-color="green"] {
         background-color: rgb(146, 255, 143);
+        transition: background-color 0s 1.6s;
     }
 
     &[data-color="yellow"] {
         background-color: rgb(253, 255, 143);
+        transition: background-color 0s 1.6s;
     }
 
     &[data-color="gray"] {
         background-color: rgb(165, 165, 165);
-    }
-
-    &[data-color=""] {
-        background-color: rgb(255, 255, 255);
+        transition: background-color 0s 1.6s;
     }
 }
 

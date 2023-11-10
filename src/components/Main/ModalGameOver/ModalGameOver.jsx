@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./ModalGameOver.module.scss";
 import classNames from 'classnames';
+import { Stats } from "../../Stats/Stats";
 
 let message = '';
 
@@ -26,6 +27,7 @@ export const ModalGameOver = ({ gameStatus, dailyWord, handleStartNewGameClick }
         <div id="modal" className={classNames(styles.modalCover, (gameStatus !== 'in progress'? styles.modalCover__active : ''))}>
             <div className={styles.modal}>
                 {message}
+                <Stats/>
                 <button className={styles.newGamebtn} onClick={handleStartNewGameClick}>Start New Game!</button>
             </div>
         </div>
