@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Hello-wordle/static/css/main.78c91006.css",
-    "main.js": "/Hello-wordle/static/js/main.004bb6cc.js",
+    "main.css": "/Hello-wordle/static/css/main.243988dd.css",
+    "main.js": "/Hello-wordle/static/js/main.696bac7c.js",
     "static/js/787.e01666d6.chunk.js": "/Hello-wordle/static/js/787.e01666d6.chunk.js",
     "static/media/lobster-two-latin-700-normal.woff": "/Hello-wordle/static/media/lobster-two-latin-700-normal.a5765c8d33c83f77630c.woff",
     "static/media/lobster-two-latin-700-normal.woff2": "/Hello-wordle/static/media/lobster-two-latin-700-normal.04a81b4de1d43b4e32da.woff2",
@@ -15,12 +15,12 @@
     "index.html": "/Hello-wordle/index.html",
     "static/media/backspace.svg": "/Hello-wordle/static/media/backspace.e98790353986ab697056.svg",
     "static/media/info.svg": "/Hello-wordle/static/media/info.d82bf124fbfb234c4369.svg",
-    "main.78c91006.css.map": "/Hello-wordle/static/css/main.78c91006.css.map",
-    "main.004bb6cc.js.map": "/Hello-wordle/static/js/main.004bb6cc.js.map",
+    "main.243988dd.css.map": "/Hello-wordle/static/css/main.243988dd.css.map",
+    "main.696bac7c.js.map": "/Hello-wordle/static/js/main.696bac7c.js.map",
     "787.e01666d6.chunk.js.map": "/Hello-wordle/static/js/787.e01666d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.78c91006.css",
-    "static/js/main.004bb6cc.js"
+    "static/css/main.243988dd.css",
+    "static/js/main.696bac7c.js"
   ]
 }
