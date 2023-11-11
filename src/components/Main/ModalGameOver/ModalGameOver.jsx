@@ -7,7 +7,7 @@ let message = '';
 
 const setGameOverModal = (gameStatus, dailyWord) => {
     if (gameStatus === 'win') {
-        message = <div className={styles.modalTextWin}><h3>Well done!</h3>
+        message = <div className={styles.modalTextWin}><h2>Well done!</h2>
             <p>You guess the word</p>
             <p className={styles.dailyWord}>{dailyWord}</p>
             </div>;
@@ -19,7 +19,7 @@ const setGameOverModal = (gameStatus, dailyWord) => {
     }
 }
 
-export const ModalGameOver = ({ gameStatus, dailyWord, handleStartNewGameClick }) => {
+export const ModalGameOver = ({ gameStatus, dailyWord, handleStartNewGameClick, winRow }) => {
 
     setGameOverModal(gameStatus, dailyWord);
 
@@ -27,7 +27,9 @@ export const ModalGameOver = ({ gameStatus, dailyWord, handleStartNewGameClick }
         <div id="modal" className={classNames(styles.modalCover, (gameStatus !== 'in progress'? styles.modalCover__active : ''))}>
             <div className={styles.modal}>
                 {message}
-                <Stats/>
+                <div className={styles.statsContainer}>
+                <Stats gameStatus={gameStatus} winRow={winRow}/>
+                </div>
                 <button className={styles.newGamebtn} onClick={handleStartNewGameClick}>Start New Game!</button>
             </div>
         </div>

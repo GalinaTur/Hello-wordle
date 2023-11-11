@@ -3,100 +3,149 @@ import styles from "./Stats.module.scss";
 import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import datalabels from 'chartjs-plugin-datalabels';
+import { Rate } from "./Rate/Rate";
 
 Chart.register(...registerables);
 
-const statsData = [
-    { amount: 0, current: false },
-    { amount: 1, current: false },
-    { amount: 4, current: false },
-    { amount: 5, current: true },
-    { amount: 8, current: false },
-    { amount: 3, current: false }
-]
+const initialChartData = [0, 0, 0, 0, 0, 0]
 
-export const Stats = ({ dailyWord, startNewGame }) => {
+class StatsRate {
+    key;
+    value;
+    constructor(key) {
+        this.key = key;
+        this.value = JSON.parse(localStorage.getItem(key)) || 0;
+    }
 
-    return (
+    update(value) {
+        localStorage.setItem(this.key, JSON.stringify(value !== 0 ? this.value : value));
+    }
+
+    increase() {
+        this.value++;
+        this.update();
+    }
+
+    get value() {
+        return this._value;
+    }
+
+    set value(number) {
+        this._value = number;
+    }
+}
+
+class ChartRate extends StatsRate {
+    constructor(key) {
+        super(key);
+        this.value = JSON.parse(localStorage.getItem(key)) || initialChartData;
+    }
+
+    increase(index) {
+        this.value[index]++;
+        this.update();
+    }
+}
+
+export const Stats = ({ gameStatus, winRow }) => {
+    let gamesPlayed = new StatsRate("games_played");
+    let gamesWon = new StatsRate('games_won');
+    let currStreak = new StatsRate('curr_streak');
+    let maxStreak = new StatsRate('max_streak');
+    let guessDistrib = new ChartRate('guess_distrib');
+
+    const [played, setPlayed] = useState(gamesPlayed.value)
+    const [streak, setStreak] = useState(currStreak.value)
+
+    useEffect(() => {
+        if (gameStatus === 'win') {
+            gamesPlayed.increase();
+            gamesWon.increase();
+            currStreak.value = streak;
+            currStreak.increase();
+            if (currStreak.value > maxStreak.value) {
+                maxStreak.value = currStreak.value;
+                maxStreak.update();
+            }
+            guessDistrib.increase(winRow);
+            setPlayed(gamesPlayed.value)
+            setStreak(currStreak.value)
+        } else if (gameStatus === 'lose') {
+            gamesPlayed.increase();
+            setStreak(0);
+        }
+    }, [gameStatus]);
+
+    return played && (
         <div className={styles.stats}>
-            <h2>Statistics</h2>
+            <h3>Statistics</h3>
             <div className={styles.row}>
-                <div>
-                    <p>1</p>
-                    <p>Played</p>
-                </div>
-                <div>
-                    <p>100%</p>
-                    <p>Win 1</p>
-                </div>
-                <div>
-                    <p>1</p>
-                    <p>Current Streak</p>
-                </div>
-                <div>
-                    <p>1</p>
-                    <p>Max Streak</p>
-                </div>
+                <Rate title='played' value={gamesPlayed.value} />
+                <Rate title={`Win ${gamesWon.value}`} value={`${Math.round(gamesWon.value * 100 / gamesPlayed.value)}%`} />
+                <Rate title={`current\nstreak`} value={currStreak.value} />
+                <Rate title={`max\nstreak`} value={maxStreak.value} />
             </div>
-            <h3>Guess distribution</h3>
-            <Bar data={{
-                labels: [1, 2, 3, 4, 5, 6],
-                datasets: [{
-                    data: statsData.map(guess => guess.amount),
-                    backgroundColor: statsData.map(guess => guess.current ? 'rgb(37, 219, 31)' : 'rgb(160, 160, 160)'),
-                    datalabels: {
-                        align: 'start',
-                        anchor: 'end'
-                    },
-                }],
-            }} options={{
-                indexAxis: 'y',
-                minBarLength: Math.max(window.innerWidth / 50, 20),
-                plugins: {
-                    datalabels: {
-                        color: 'black',
-                            font: {
-                                family: 'Patrick Hand SC',
-                                size: 12+window.innerWidth/300
-                            }
-                    },
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                    }
-                }, scales: {
-                    x: {
-                        border: {
-                            display: false,
+            <div>
+                <h4>Guess distribution</h4>
+                <Bar data={{
+                    labels: [1, 2, 3, 4, 5, 6],
+                    datasets: [{
+                        data: guessDistrib.value.map(guess => guess),
+                        backgroundColor: guessDistrib.value.map((guess, i) => i === winRow ? 'rgb(37, 219, 31)' : 'rgb(160, 160, 160)'),
+                        datalabels: {
+                            align: 'start',
+                            anchor: 'end'
                         },
-                        grid: {
-                            display: false,
-                        },
-                        ticks: {
-                            display: false,
-                        }
-                    },
-                    y: {
-                        border: {
-                            display: false,
-                        },
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
+                    }],
+                }} options={{
+                    indexAxis: 'y',
+                    minBarLength: Math.max(window.innerWidth / 50, 20),
+                    plugins: {
+                        datalabels: {
                             color: 'black',
                             font: {
                                 family: 'Patrick Hand SC',
-                                size: 14
+                                size: 12 + window.innerWidth / 300
+                            }
+                        },
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                        }
+                    }, scales: {
+                        x: {
+                            border: {
+                                display: false,
+                            },
+                            grid: {
+                                display: false,
+                            },
+                            ticks: {
+                                display: false,
+                            }
+                        },
+                        y: {
+                            border: {
+                                display: false,
+                            },
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    family: 'Patrick Hand SC',
+                                    size: 14
+                                }
                             }
                         }
                     }
-                }
-            }} 
-                plugins={[datalabels]}
-            />
+                }}
+                    plugins={[datalabels]}
+                />
+            </div>
         </div>
     )
 }

@@ -19,7 +19,6 @@ const checkForFullMatching = (word, dailyWord) => {
         if (word[i] === pseudoDailyWord[i]) { 
             matchIndexes.push(i);
             pseudoDailyWord = pseudoDailyWord.replace(word[i], ' ');
-            console.log(pseudoDailyWord, matchIndexes)
         }
     }
     return [matchIndexes, pseudoDailyWord];
@@ -44,8 +43,6 @@ export const Row = ({ className, word, dailyWord, activeRow, nth }) => {
     let matchIndexes = [];
 
     if (isFilledRow(nth, activeRow)) [matchIndexes, pseudoDailyWord] = checkForFullMatching(word, pseudoDailyWord);
-
-console.log(matchIndexes, pseudoDailyWord)
 
     for (let i = 0; i < 5; i++) {
         if (isFilledRow(nth, activeRow) && matchIndexes.includes(i)) {

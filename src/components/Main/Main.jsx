@@ -131,13 +131,15 @@ export const Main = ({ dailyWord, startNewGame }) => {
         startNewGame();
     }
 
+const winRow = activeRow - 1;
+
     return (
         <main className={styles.main}>
             <Container className={styles.container}>
                 <Field words={words} dailyWord={dailyWord} activeRow={activeRow} />
                 <Keyboard handleEnterClick={handleEnterClick} handleBackspaceClick={handleBackspaceClick} handleClick={handleClick} />
                 <ModalHint message={message} />
-                <ModalGameOver gameStatus={gameStatus} dailyWord={dailyWord} handleStartNewGameClick={handleStartNewGameClick} />
+                <ModalGameOver gameStatus={gameStatus} dailyWord={dailyWord} handleStartNewGameClick={handleStartNewGameClick} winRow={winRow}/>
             </Container>
         </main>
     )

@@ -25,15 +25,16 @@
     padding: 10px 5px;
     text-align: center;
     font-size: 20px;
-    background-color: rgb(223, 239, 250);
+    background-color: rgb(255, 236, 173);
     border: 2px solid rgb(97, 97, 97);
     border-radius: 8px;
     z-index: 5;
 
     .modalTextWin {
-        font-size: 30px;
+        font-size: 1em;
         letter-spacing: 3px;
-        margin-bottom: 10px;
+        padding-bottom: 15px;
+        border-bottom: 2px dotted black;
 
         &::before {
             content: "😎";
@@ -41,16 +42,18 @@
     }
 
     .modalTextLose {
-        font-size: 30px;
         margin-bottom: 10px;
+        border-bottom: 2px dotted black;
 
         &::before {
             content: "🤨";
         }
     }
+
     .dailyWord {
         font-size: 40px;
         letter-spacing: 5px;
+        text-shadow: 1px 1px 2px rgb(37, 219, 31);
     }
 
     .newGamebtn {
@@ -69,21 +72,26 @@
 
 @include media-md {
     .modal {
+        padding: 20px 5px;
         width: 450px;
         left: calc(50% - 225px);
         font-size: 24px;
-    
+
         .modalTextWin {
-            font-size: 40px;
-            letter-spacing: 3px;
+            border-bottom: 4px dotted black;
         }
-    
+
         .modalTextLose {
-            font-size: 40px;
+            border-bottom: 4px dotted black;
         }
+
         .dailyWord {
             font-size: 50px;
             letter-spacing: 5px;
+        }
+
+        .statsContainer {
+            padding: 15px;
         }
     }
 }

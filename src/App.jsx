@@ -10,12 +10,10 @@ export const App = () => {
 
     const startNewGame = () => {
         randomIndex = (Math.round(Math.random() * 5756));
-        setDailyWord('words[randomIndex]');
+        setDailyWord(words[randomIndex]);
     }
 
-    console.log(dailyWord);
-
-    useEffect(() => setDailyWord('pumps'), []);
+    useEffect(() => setDailyWord(words[randomIndex]), []);
     return (
         <>
             <Header />

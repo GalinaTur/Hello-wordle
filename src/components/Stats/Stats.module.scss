@@ -1,5 +1,29 @@
 @import '@fontsource/patrick-hand-sc';
 
+.stats {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
 .row {
     display: flex;
+    justify-content: space-between;
+}
+
+.rate {
+    width: 20%;
+}
+
+.amount {
+    font-size: 1.4em;
+}
+
+.title {
+    font-size: 0.8em;
+}
+
+canvas {
+    margin-top: -10px;
 }
