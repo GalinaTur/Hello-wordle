@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Hello-wordle/static/css/main.243988dd.css",
-    "main.js": "/Hello-wordle/static/js/main.696bac7c.js",
+    "main.css": "/Hello-wordle/static/css/main.034dbec4.css",
+    "main.js": "/Hello-wordle/static/js/main.5d9ebfc7.js",
     "static/js/787.e01666d6.chunk.js": "/Hello-wordle/static/js/787.e01666d6.chunk.js",
     "static/media/lobster-two-latin-700-normal.woff": "/Hello-wordle/static/media/lobster-two-latin-700-normal.a5765c8d33c83f77630c.woff",
     "static/media/lobster-two-latin-700-normal.woff2": "/Hello-wordle/static/media/lobster-two-latin-700-normal.04a81b4de1d43b4e32da.woff2",
@@ -11,16 +11,16 @@
     "static/media/patrick-hand-sc-latin-ext-400-normal.woff2": "/Hello-wordle/static/media/patrick-hand-sc-latin-ext-400-normal.f5788638d7a53a9f7ec4.woff2",
     "static/media/patrick-hand-sc-latin-400-normal.woff": "/Hello-wordle/static/media/patrick-hand-sc-latin-400-normal.713cf5209921e7d304e7.woff",
     "static/media/patrick-hand-sc-vietnamese-400-normal.woff2": "/Hello-wordle/static/media/patrick-hand-sc-vietnamese-400-normal.d8da36e94b8a460c7ab4.woff2",
-    "static/media/menu.svg": "/Hello-wordle/static/media/menu.ab5e1b86bbc63702867b.svg",
     "index.html": "/Hello-wordle/index.html",
     "static/media/backspace.svg": "/Hello-wordle/static/media/backspace.e98790353986ab697056.svg",
     "static/media/info.svg": "/Hello-wordle/static/media/info.d82bf124fbfb234c4369.svg",
-    "main.243988dd.css.map": "/Hello-wordle/static/css/main.243988dd.css.map",
-    "main.696bac7c.js.map": "/Hello-wordle/static/js/main.696bac7c.js.map",
+    "static/media/stats.svg": "/Hello-wordle/static/media/stats.216bc3e9eb47c6fd12a9.svg",
+    "main.034dbec4.css.map": "/Hello-wordle/static/css/main.034dbec4.css.map",
+    "main.5d9ebfc7.js.map": "/Hello-wordle/static/js/main.5d9ebfc7.js.map",
     "787.e01666d6.chunk.js.map": "/Hello-wordle/static/js/787.e01666d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.243988dd.css",
-    "static/js/main.696bac7c.js"
+    "static/css/main.034dbec4.css",
+    "static/js/main.5d9ebfc7.js"
   ]
 }
