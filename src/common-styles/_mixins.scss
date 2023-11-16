@@ -9,3 +9,32 @@
         @content;
     }
 }
+
+@mixin cell_x {
+    @for $i from 0 through $cellsInRow {
+        .cell_#{$i} {
+            transition-delay: $i * 0.25s;
+        }
+    }
+}
+
+@mixin cell__back_color {
+
+    @each $colorName,
+    $colorCode in $cellColors {
+        .cell__back_#{$colorName} {
+            background-color: $colorCode;
+        }
+    }
+}
+
+@mixin button_by_data-color {
+
+    @each $colorName,
+    $colorCode in $cellColors {
+        button[data-color=#{$colorName}] {
+            background-color: $colorCode;
+            transition: background-color 0s 1.6s;
+        }
+    }
+}

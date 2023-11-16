@@ -1,19 +1,17 @@
 @import "../../../common-styles/mixins";
 
-.modalCover {
-    position: relative;
+.modal {
     font-family: 'Patrick Hand SC', sans-serif;
-    font-weight: normal;
-    min-width: 300px;
     padding: 10px 0;
+    width: max(30%, 300px);
     font-size: 20px;
+    font-weight: normal;
     background-color: rgb(255, 236, 173);
     border: 2px solid rgb(97, 97, 97);
     border-radius: 20px;
 
     &::backdrop{
-        background: rgba(0, 0, 0, 0);
-        background: rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(1px);
         padding: 5px;
     }
@@ -25,7 +23,8 @@
     }
 
     .container {
-        padding: 0 10px;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .subtitle {
@@ -71,14 +70,7 @@
 
     .closeBtn {
         position: absolute;
-        top: 20px;
-        right: 20px;
-    }
-}
-
-@include media-md {
-    .modalCover {
-        width: 400px;
-        font-size: 26px;
+        top: 25px;
+        right: 25px;
     }
 }

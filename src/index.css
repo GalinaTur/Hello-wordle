@@ -4,9 +4,14 @@ html {
 
 body {
   background-color: rgb(241, 226, 173);
-  color: #000000;
   position: relative;
   overflow-x: hidden;
+}
+
+#root {
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
 }
 
 img, svg {

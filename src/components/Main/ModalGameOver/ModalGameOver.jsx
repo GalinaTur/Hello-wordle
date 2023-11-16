@@ -1,9 +1,10 @@
-import React from "react";
 import styles from "./ModalGameOver.module.scss";
-import classNames from 'classnames';
 import { Stats } from "../../Stats/Stats";
+import {useEffect, useRef} from 'react';
+import {Container} from '../../Container/Container'
 
 let message = '';
+
 
 const setGameOverModal = (gameStatus, dailyWord) => {
     if (gameStatus === 'win') {
@@ -22,16 +23,22 @@ const setGameOverModal = (gameStatus, dailyWord) => {
 export const ModalGameOver = ({ gameStatus, dailyWord, handleStartNewGameClick, winRow }) => {
 
     setGameOverModal(gameStatus, dailyWord);
+    const modalRef = useRef(null);
+
+useEffect(()=> {
+    if (gameStatus === 'win' || gameStatus === 'lose') {
+        modalRef.current.showModal();
+    }  else modalRef.current.close();
+}, [gameStatus]);
 
     return (
-        <div id="modal" className={classNames(styles.modalCover, (gameStatus !== 'in progress'? styles.modalCover__active : ''))}>
-            <div className={styles.modal}>
+        <dialog ref={modalRef} className={styles.modal}>
+                        <Container className={styles.container}>
                 {message}
-                <div className={styles.statsContainer}>
                 <Stats gameStatus={gameStatus} winRow={winRow}/>
-                </div>
                 <button className={styles.newGamebtn} onClick={handleStartNewGameClick}>Start New Game!</button>
-            </div>
-        </div>
+                {/* <button onClose={() => handleClose()} className={styles.closeBtn}>X</button> */}
+                </Container>
+        </dialog>
     )
 }

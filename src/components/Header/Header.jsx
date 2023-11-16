@@ -1,26 +1,35 @@
 import styles from "./Header.module.scss";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Container } from "../Container/Container";
-import { ModalRules } from "./ModalRules/ModalRules";
+import { ModalHeader } from "./ModalHeader/ModalHeader";
 
-export const Header = () => {
+export const Header = ({ statsBtnRef, gameStatus }) => {
 
-    const [isModalActive, setIsModalActive] = useState(false);
+    const [activeModalType, setActiveModalType] = useState();
+    const modalRef = useRef(null);
+    const modal = modalRef.current;
 
-    const handleClick=()=> {
-        const modalRules = document.getElementById('modalRules');
-        isModalActive? modalRules.close(): modalRules.showModal();
-        setIsModalActive((prev) => !prev);
+    const handleClick = (e) => {
+        if (e.target.id === 'statsBtn') {
+            setActiveModalType('stats');
+            modal.showModal();
+        } else if (e.target.id === 'rulesBtn') {
+            setActiveModalType('rules');
+            modal.showModal();
+        } else if (e.target.id === 'closeBtn' || e.target.nodeName.toLowerCase() === 'dialog') {
+            setActiveModalType(null);
+            modal.close();
+        };
     }
 
     return (
         <header className={styles.header}>
             <Container className={styles.container}>
-            <button className={styles.menu}></button>
+                <button id='statsBtn' className={styles.stats} ref={statsBtnRef} onClick={handleClick}></button>
                 <h1 className="header__title">Hello, Wordle</h1>
-                <button className={styles.info} onClick={()=>handleClick()}></button>
+                <button id='rulesBtn' className={styles.info} onClick={handleClick}></button>
             </Container>
-            <ModalRules id='modalRules' isActive={isModalActive} handleClick={handleClick}/>
+            <ModalHeader modalRef={modalRef} type={activeModalType} handleClick={handleClick} gameStatus={gameStatus}/>
         </header>
     )
 }

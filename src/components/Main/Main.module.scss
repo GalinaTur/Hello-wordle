@@ -4,10 +4,38 @@
     font-family: 'Patrick Hand SC', sans-serif;
     font-weight: normal;
     position: relative;
+    flex-grow: 1;
 }
 
 .container {
-    display: flex;
     flex-direction: column;
-    align-items:stretch;
+    height: 100%;
+}
+
+.row_wrongGuess{
+    animation: 0.5s ease-in-out wrongGuess;
+}
+
+@keyframes wrongGuess {
+0% {
+    transform: translateX(2px);
+}
+30% {
+    transform: translateX(-5px);
+}
+40% {
+    transform: translateX(5px);
+}
+50% {
+    transform: translateX(-5px);
+}
+60% {
+    transform: translateX(5px);
+}
+70% {
+    transform: translateX(-5px);
+}
+100% {
+    transform: translateX(3px);
+}
 }

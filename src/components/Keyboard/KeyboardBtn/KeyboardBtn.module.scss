@@ -11,21 +11,7 @@
     padding: 0 5px;
     user-select: none;
     text-transform: uppercase;
-
-    &[data-color="green"] {
-        background-color: rgb(146, 255, 143);
-        transition: background-color 0s 1.6s;
-    }
-
-    &[data-color="yellow"] {
-        background-color: rgb(253, 255, 143);
-        transition: background-color 0s 1.6s;
-    }
-
-    &[data-color="gray"] {
-        background-color: rgb(165, 165, 165);
-        transition: background-color 0s 1.6s;
-    }
+    transition: background-color 0s 0s;
 }
 
 .backspace {
@@ -39,6 +25,8 @@
 .enter {
     min-width: 50px;
 }
+
+@include button_by_data-color;
 
 @include media-md {
     .button {

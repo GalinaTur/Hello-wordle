@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Header } from "./components/Header/Header";
 import { Main } from "./components/Main/Main";
 import words from './store';
@@ -7,6 +7,7 @@ let randomIndex = (Math.round(Math.random() * 5756));
 
 export const App = () => {
     const [dailyWord, setDailyWord] = useState('');
+    const [gameStatus, setGameStatus] = useState('in progress');
 
     const startNewGame = () => {
         randomIndex = (Math.round(Math.random() * 5756));
@@ -14,10 +15,13 @@ export const App = () => {
     }
 
     useEffect(() => setDailyWord(words[randomIndex]), []);
+
+const handleChangeGameStatus = (status) => {setGameStatus(status)}
+
     return (
         <>
-            <Header />
-            <Main dailyWord={dailyWord} startNewGame={startNewGame} />
+            <Header gameStatus={gameStatus}/>
+            <Main dailyWord={dailyWord} startNewGame={startNewGame} gameStatus={gameStatus} handleChangeGameStatus={handleChangeGameStatus}/>
         </>
     )
 }

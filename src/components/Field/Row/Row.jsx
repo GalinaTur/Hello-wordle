@@ -35,7 +35,7 @@ const changePseudoDailyWord = (dailyWord, letter) => {
     return dailyWord.replace(letter, ' ');
 }
 
-export const Row = ({ className, word, dailyWord, activeRow, nth }) => {
+export const Row = ({ activeRowRef, className, word, dailyWord, activeRow, nth }) => {
 
     const row = [];
     let color = '';
@@ -56,7 +56,7 @@ export const Row = ({ className, word, dailyWord, activeRow, nth }) => {
     };
 
     return (
-        <div className={classNames(className, styles.row)}>
+        <div ref={nth === activeRow ? activeRowRef : null} className={classNames(className, styles.row)}>
             {row}
         </div>
     )

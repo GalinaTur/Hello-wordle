@@ -1,10 +1,12 @@
 @import '@fontsource/patrick-hand-sc';
+@import '../../common-styles/mixins';
 
 .stats {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    gap: 20px;
+    gap: 15px;
+    padding-top: 15px;
+    text-align: center;
 }
 
 .row {
@@ -12,18 +14,19 @@
     justify-content: space-between;
 }
 
-.rate {
-    width: 20%;
-}
-
-.amount {
-    font-size: 1.4em;
-}
-
-.title {
-    font-size: 0.8em;
-}
-
 canvas {
     margin-top: -10px;
+    min-height: 150px;
+    height: 150px !important;
+}
+
+@include media-md {
+    .stats {
+        padding-top: 5px;
+    }
+
+    canvas {
+        min-height: 200px;
+        height: 200px !important;
+    }
 }

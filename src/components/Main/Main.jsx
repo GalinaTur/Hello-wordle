@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Main.module.scss";
 import { Container } from "../Container/Container";
 import { Keyboard } from "../Keyboard/Keyboard";
@@ -6,6 +6,7 @@ import { Field } from "../Field/Field";
 import { ModalHint } from "./ModalHint/ModalHint";
 import { ModalGameOver } from "./ModalGameOver/ModalGameOver";
 import words from "../../store/index.js";
+import { Delayed } from "./Delayed/Delayed";
 
 const checkLettersCount = (lettersCount) => {
     return (lettersCount === 5);
@@ -56,9 +57,7 @@ const setColorsToKeyboard = (mapColors) => {
     }
 }
 
-export const Main = ({ dailyWord, startNewGame }) => {
-
-    const [gameStatus, setGameStatus] = useState('in progress');
+export const Main = ({ dailyWord, startNewGame, gameStatus, handleChangeGameStatus }) => {
 
     const [guessedLetters, setGuessedLetters] = useState(new Map());
     useEffect(() => {
@@ -70,25 +69,35 @@ export const Main = ({ dailyWord, startNewGame }) => {
     const [words, setWords] = useState(['']);
 
     const [message, setMessage] = useState('');
+
+    const activeRowRef = useRef(null);
+
     useEffect(() => {
-        setTimeout(() => {
-            if (message) setMessage('');
-        }, 1000)
+        const messageTimer = setTimeout(() => {
+            if (message) {
+                setMessage('');
+                activeRowRef.current.classList.remove(styles.row_wrongGuess);
+            }
+        }, 1000);
+        return () => clearTimeout(messageTimer);
     }, [message]);
 
     useEffect(() => {
         const lastRowWord = words[words.length - 2] || '';
-        if (activeRow !== 0) setGameStatus(checkIsGameOver(lastRowWord, dailyWord, activeRow));
+        if (activeRow !== 0) handleChangeGameStatus(checkIsGameOver(lastRowWord, dailyWord, activeRow));
     }, [activeRow]);
 
     const handleEnterClick = () => {
+        if (gameStatus !== 'in progress') return;
         setWords((prev) => {
             const currentWord = prev[activeRow];
             if (!checkLettersCount(currentWord.length)) {
                 setMessage('Not enough letters');
+                activeRowRef.current.classList.add(styles.row_wrongGuess);
                 return prev;
             } else if (!checkIsWordInList(currentWord)) {
                 setMessage('Not in word list');
+                activeRowRef.current.classList.add(styles.row_wrongGuess);
                 return prev;
             } else {
                 setActiveRow((prev) => prev + 1);
@@ -108,6 +117,7 @@ export const Main = ({ dailyWord, startNewGame }) => {
     }
 
     const handleBackspaceClick = () => {
+        if (gameStatus !== 'in progress') return;
         setWords((prev) => {
             const currentWord = prev[activeRow];
             return [...prev.slice(0, -1), currentWord.slice(0, -1)];
@@ -115,6 +125,7 @@ export const Main = ({ dailyWord, startNewGame }) => {
     }
 
     const handleClick = ({ target }) => {
+        if (gameStatus !== 'in progress') return;
         setWords((prev) => {
             const currentWord = prev[activeRow];
             const newWords = activeRow ? [...prev.slice(0, -1), currentWord.concat(target.textContent)] : [currentWord.concat(target.textContent)];
@@ -126,7 +137,7 @@ export const Main = ({ dailyWord, startNewGame }) => {
         setGuessedLetters(new Map());
         setActiveRow(0);
         setWords(['']);
-        setGameStatus('in progress');
+        handleChangeGameStatus('in progress');
         setColorsToKeyboard(null);
         startNewGame();
     }
@@ -136,10 +147,13 @@ const winRow = activeRow - 1;
     return (
         <main className={styles.main}>
             <Container className={styles.container}>
-                <Field words={words} dailyWord={dailyWord} activeRow={activeRow} />
+                <Field words={words} dailyWord={dailyWord} activeRow={activeRow} activeRowRef={activeRowRef}/>
                 <Keyboard handleEnterClick={handleEnterClick} handleBackspaceClick={handleBackspaceClick} handleClick={handleClick} />
                 <ModalHint message={message} />
+                {gameStatus !== 'in progress' && 
+                <Delayed>
                 <ModalGameOver gameStatus={gameStatus} dailyWord={dailyWord} handleStartNewGameClick={handleStartNewGameClick} winRow={winRow}/>
+                </Delayed>}
             </Container>
         </main>
     )

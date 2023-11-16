@@ -1,5 +1,11 @@
-@import "./mixins";
-
 $square-size-xs: 40px;
 $square-size-sm: 45px;
 $square-size-md: 50px;
+
+$cellsInRow: 5;
+
+$greenColor: rgb(146, 255, 143);
+$yellowColor: rgb(253, 255, 143);
+$grayColor: rgb(218, 218, 218);
+
+$cellColors: ('green': $greenColor, 'yellow': $yellowColor, 'gray': $grayColor);
