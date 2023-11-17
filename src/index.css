@@ -1,4 +1,4 @@
-html {
+* {
   box-sizing: border-box;
 }
 
@@ -9,7 +9,7 @@ body {
 }
 
 #root {
-  height: 95vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
 }

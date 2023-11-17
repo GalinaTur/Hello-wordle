@@ -103,8 +103,8 @@ export const Stats = ({ gameStatus, winRow }) => {
         indexAxis: 'y',
         minBarLength: Math.max(window.innerWidth / 50, 20),
         animation: {
-            y: false,
-            duration: 0,
+            // y: false,
+            // duration: 0,
         },
         animation: {
             duration: 0,
